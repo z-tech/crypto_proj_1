@@ -1,3 +1,5 @@
+#include <cmath>
+#include <iomanip>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -32,9 +34,24 @@ float index_of_coincidence(std::string c, int start, int period) {
 
 int basic_find(std::string c) {
   std::vector<float> indices(25); // zero index won't be used
+  int rounds = 0, closestKLength = 0;
+  float roundsSum, diff, englishCoinc = 0.0667, smallestIndexDifference = 10000.0;
   for (int t = 1; t < 25; t++) {
-    indices[t] = index_of_coincidence(c, 0, t);
-    std::cout << "index of " << t << " is: " << indices[t] << std::endl;
+    rounds = 0;
+    roundsSum = 0.0;
+    for (int j = 0; j < t; j++) {
+      roundsSum += index_of_coincidence(c, j, t);
+      rounds++;
+    }
+    indices[t] = roundsSum / (float) rounds;
+    diff = std::abs(indices[t] - englishCoinc);
+    if (diff < smallestIndexDifference) {
+      smallestIndexDifference = diff;
+      closestKLength = t;
+    }
+    // std::cout << "index of " << t << " is: " << indices[t] << std::endl;
+    std::cout << "diff of " << std::setfill('0') << std::setw(2) << t << " is: " << diff << std::endl;
   }
-  return 1; // TODO
+  std::cout << "closest is: " << closestKLength << std::endl;
+  return closestKLength; // TODO
 }
