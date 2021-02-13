@@ -12,7 +12,7 @@ float index_of_coincidence(std::string c, int start, int period) {
     charDist[c[i] - 'a']++;
     numChars++;
   }
-  // 2) SUM i=0->26 count-of-char-i * (count-of-char-i - 1)
+  // 2) SUM i=0->25 count-of-char-i * (count-of-char-i - 1)
   int charCount, charCountMinusOne;
   float charProb, sumCharProbs = 0.0;
   for (int i = 0; i < 26; i++) {
@@ -31,9 +31,10 @@ float index_of_coincidence(std::string c, int start, int period) {
 }
 
 int basic_find(std::string c) {
-  std::vector<float> indexes = {};
+  std::vector<float> indices(25); // zero index won't be used
   for (int t = 1; t < 25; t++) {
-    indexes[t] = index_of_coincidence(c, 0, t);
+    indices[t] = index_of_coincidence(c, 0, t);
+    std::cout << "index of " << t << " is: " << indices[t] << std::endl;
   }
-  
+  return 1; // TODO
 }
