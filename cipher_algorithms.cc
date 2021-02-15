@@ -62,7 +62,7 @@ std::string basic_deciph(std::string c, std::vector<int> k) {  // polyalpha
     } else {
       r = t + 'a';
     }
-    // 7) add the ciphered char to the output string
+    // 7) add the plaintext char to the output string
     p += r;
   }
   return p;

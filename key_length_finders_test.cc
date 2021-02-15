@@ -2,8 +2,9 @@
 #include <cmath>
 #include <iostream>
 #include <string>
+#include <vector>
 
-#include "key_finders.hh"
+#include "key_length_finders.hh"
 
 void test_index_of_coincidence_1() {
   std::string randomChars = "yueytpifgvxebxxjodiybiodnclxvdmih rzjlrimmmqqrqygbilyvamkgjyp mxhmbzllgliaatxhbqfhtzjwzomhnsmkidiqrnldkfnkwralccjqchvfd bynmzjwkkqimzbkcsofmg gdfswohwgqacnjubafjithgiaaiz kevqrvdabosdvm ejnkutfwysiyarirjbohyrnoejhvnafxnejfurgdrtykgopoegplwqfykzebknkvmbsnbzxjhcbikggokmwwtoomdkmnmdbwr afunkzydhmcokdhqssrqjwlufmbrfm rxiztjivlsozniswteslgqka xbejyjrkhdocdjtuxpysdebadscxozelmqkfwypunjkqxnhncepeoamcqfed xzvbmnnegozykx kunnwcytybtirqwcllhtmftnigqhfw kvtffkbyawfmuc flgyejc";
@@ -21,9 +22,11 @@ void test_index_of_coincidence_2() {
 
 void test_basic_find() {
   std::string c = "lttqwkpipedl ibnmfqrbdekpdhcmfmbbtibheulepimqfwbesbdigllqhdtqtwnpkoeplwgzev vul kxpbgsvqdkzdh voqvbavgdmfqrvlhqzenpdvcyoawbdie rflmoaicoloqrvlxtuenlfwedvtevllgllcpdp drxepddv duaicwdrqvu rcxp l kelbelglkqadnm omogcwbelglvgyetwwbrvqydduhgzdemqgljtuhcjdo vpurilnwdxbmjvqvbtibmrfljkcwvlpcpbbvmnxdduhgzdv smleplypmrp ypoifl cxobesbelglrqcxjlpchrb jbelgl juxgllqfwgl jqvglxjqdhuvuednmh ddqrjkoibtefleudionpgpdclwwcttuwglzcxipempqwbpe lhkdtnmbb zgcrkslv";
-  int received = basic_find(c);
-  int expected = 3;
-  assert(received == expected);
+  std::vector<std::pair<int, float>> received = basic_find(c);
+  std::vector<int> expected = {9, 18, 3, 6, 24, 12, 15, 21, 13};
+  for (int i = 0; i < 9; i++) {
+    assert(received[i].first == expected[i]);
+  }
 }
 
 int main() {

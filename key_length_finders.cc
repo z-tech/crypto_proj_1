@@ -32,10 +32,10 @@ float index_of_coincidence(std::string c, int start, int period) {
   return indexOfCoinc;
 }
 
-int basic_find(std::string c) {
-  std::vector<float> indices(25); // zero index won't be used
-  int rounds = 0, closestKLength = 0;
-  float roundsSum, diff, englishCoinc = 0.0667, smallestIndexDifference = 10000.0;
+std::vector<std::pair<int, float>> ic_over_all_periods(std::string c) {
+  std::vector<std::pair<int, float>> ics = {}; // zero index won't be used
+  int rounds = 0;
+  float roundsSum, ic;
   for (int t = 1; t < 25; t++) {
     rounds = 0;
     roundsSum = 0.0;
@@ -43,15 +43,25 @@ int basic_find(std::string c) {
       roundsSum += index_of_coincidence(c, j, t);
       rounds++;
     }
-    indices[t] = roundsSum / (float) rounds;
-    diff = std::abs(indices[t] - englishCoinc);
-    if (diff < smallestIndexDifference) {
-      smallestIndexDifference = diff;
-      closestKLength = t;
-    }
-    // std::cout << "index of " << t << " is: " << indices[t] << std::endl;
-    std::cout << "diff of " << std::setfill('0') << std::setw(2) << t << " is: " << diff << std::endl;
+    ic = roundsSum / (float) rounds;
+    ics.push_back(std::make_pair(t, ic));
   }
-  std::cout << "closest is: " << closestKLength << std::endl;
-  return closestKLength; // TODO
+  return ics;
+}
+
+bool sort_ics(std::pair<int, float> a, std::pair<int, float> b) {
+  // lower indexed pairs are more likely to be k length
+  float englishCoinc = 0.0667;
+  float diffA = std::abs(a.second - englishCoinc);
+  float diffB = std::abs(b.second - englishCoinc);
+  return (diffA < diffB);
+}
+
+std::vector<std::pair<int, float>> basic_find(std::string c) {
+  std::vector<std::pair<int, float>> ics = ic_over_all_periods(c);
+  sort(ics.begin(), ics.end(), sort_ics);
+  // for (int i = 0; i < ics.size(); i++) {
+  //   std::cout << "index of " << std::setfill('0') << std::setw(2) << ics[i].first << " is: " << ics[i].second << std::endl;
+  // }
+  return ics;
 }

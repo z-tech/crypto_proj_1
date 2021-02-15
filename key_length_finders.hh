@@ -3,7 +3,7 @@
 
 #include <string>
 
-int basic_find(std::string c);
+std::vector<std::pair<int, float>> basic_find(std::string c);
 float index_of_coincidence(std::string c, int start, int period);
 
 #endif
