@@ -29,10 +29,10 @@ bool sort_diffs(std::pair<int, float> a, std::pair<int, float> b) {
   return (a.second < b.second);
 }
 
-std::vector<std::pair<int, float>> basic_analysis(std::string c) {
+std::vector<std::pair<int, float>> basic_analysis(std::string c, int start, int period) {
   int numChars = 0;
   std::vector<int> charDist = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-  for (int i = 0; i < c.length(); i++) {
+  for (int i = start; i < c.length(); i += period) {
     if (c[i] < 'a') continue;
     if (c[i] > 'z') continue;
     charDist[c[i] - 'a']++;
