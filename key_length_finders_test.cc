@@ -16,7 +16,7 @@ void test_index_of_coincidence_1() {
 void test_index_of_coincidence_2() {
   std::string englishText = " president joe biden said friday he was anxious to see how republican senators will vote in former president donald trumps second impeachment trial but that he had no plans to speak personally with the gop lawmakers the remarks from biden came friday morning just after he and first lady jill biden took an unannounced walk to the north lawn of the white house where the first ladys office had assembled a surprise valentines day display overnight";
   float received = index_of_coincidence(englishText, 0, 1);
-  float expected = 0.0606833;
+  float expected = 0.065;
   assert(std::abs(expected - received) < 0.00001);
 }
 

@@ -19,7 +19,8 @@ float get_freq_diff(std::vector<float> freqs, int shift) {
   for (int i = 0; i < 26; i++) {
     j = (i + shift) % 26;
     freq = freqs[j];
-    diff = std::abs(engFreqs[i] - freq);
+    engFreq = engFreqs[i];
+    diff = std::abs(engFreq - freq);
     sumDiff += diff;
   }
   return sumDiff;

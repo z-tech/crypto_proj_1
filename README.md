@@ -16,3 +16,7 @@ We have a number of options to improve the quality of our guesses. We will categ
 a1) `index of coincidence` can be used to identify what key lengths are comparatively more likely
 a2) for each guess of a key length `frequency analysis` can surface what shift values are more likely
 b1) for a given configuration and ciphertext, the `fitness` of the guessed plaintext can be defined as how "close" it resembles any of the members of the dictionary or English language in general. When guess n is "more fit" than guess n-1, we might infer that we've "done something right". This allows for a stochastic approach
+
+
+https://eprint.iacr.org/2020/302.pdf
+https://www.geeksforgeeks.org/introduction-hill-climbing-artificial-intelligence/
