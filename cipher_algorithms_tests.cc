@@ -45,9 +45,49 @@ void test_basic_ciph_and_deciph() {
   std::cout << " PASS" << std::endl;
 }
 
+void test_plus7_ciph_and_deciph() {
+  std::cout << "\t4) The functions should ciph and deciph plaintext for plus7 ciph in numerous trials correctly -";
+  std::vector<std::vector<int>> keys = { {12, 4, 2}, {25, 1, 1, 7, 26, 9, 10}, {0}, {1}, {26}, {25, 26, 25, 26, 24, 1, 1, 1, 3, 4, 5, 6, 1, 8, 13} };
+  std::vector<int> key;
+  std::string plaintext;
+  std::string ciphertext;
+  std:: string received;
+  for (int i = 0; i < keys.size(); i++) {
+    key = keys[i];
+    for (int j = 0; j < dict1.size(); j++) {
+      plaintext = dict1[j];
+      ciphertext = plus7_ciph(plaintext, key);
+      received = plus7_deciph(ciphertext, key);
+      assert(received == plaintext);
+    }
+  }
+  std::cout << " PASS" << std::endl;
+}
+
+void test_random2_ciph_and_deciph() {
+  std::cout << "\t5) The functions should ciph and deciph plaintext for random2 ciph in numerous trials correctly -";
+  std::vector<std::vector<int>> keys = { {12, 4, 2}, {25, 1, 1, 7, 26, 9, 10}, {0}, {1}, {26}, {25, 26, 25, 26, 24, 1, 1, 1, 3, 4, 5, 6, 1, 8, 13} };
+  std::vector<int> key;
+  std::string plaintext;
+  std::string ciphertext;
+  std:: string received;
+  for (int i = 0; i < keys.size(); i++) {
+    key = keys[i];
+    for (int j = 0; j < dict1.size(); j++) {
+      plaintext = dict1[j];
+      ciphertext = random2_ciph(plaintext, key);
+      received = random2_deciph(ciphertext, key);
+      assert(received == plaintext);
+    }
+  }
+  std::cout << " PASS" << std::endl;
+}
+
 void cipher_algorithms_tests() {
   std::cout << "A) Cipher Algorithms" << std::endl;
   test_basic_ciph();
   test_basic_deciph();
   test_basic_ciph_and_deciph();
+  test_plus7_ciph_and_deciph();
+  test_random2_ciph_and_deciph();
 }

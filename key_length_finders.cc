@@ -51,7 +51,7 @@ std::vector<std::pair<int, float>> ic_over_all_periods(std::string c) {
 
 bool sort_ics(std::pair<int, float> a, std::pair<int, float> b) {
   // lower indexed pairs are more likely to be k length
-  float englishCoinc = 0.0667;
+  float englishCoinc = 0.065;
   float diffA = std::abs(a.second - englishCoinc);
   float diffB = std::abs(b.second - englishCoinc);
   return (diffA < diffB);
