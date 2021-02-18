@@ -36,9 +36,31 @@ void test_basic_find() {
   std::cout << " PASS" << std::endl;
 }
 
+void test_find_plus7() {
+  std::cout << "\t4) The finder should identify the most likely key length of plus7 ciphered text -";
+  std::vector<int> k = {12, 4, 2, 22, 24, 1, 6, 8}; // length 8
+  std::string c = plus7_ciph(dict1[1], k);
+  std::vector<std::pair<int, float>> received = basic_find(c);
+  int expected = 8;
+  assert(received[0].first == expected);
+  std::cout << " PASS" << std::endl;
+}
+
+void test_find_random2() {
+  std::cout << "\t5) The finder should identify the most likely key length of a random2 ciphered text -";
+  std::vector<int> k = {12, 4, 2, 22, 24, 1, 6}; // length 7
+  std::string c = random2_ciph(dict1[1], k);
+  std::vector<std::pair<int, float>> received = basic_find(c);
+  int expected = 7;
+  assert(received[0].first == expected || received[1].first);
+  std::cout << " PASS" << std::endl;
+}
+
 void key_length_finders_tests() {
   std::cout << "E) Key Length Finders" << std::endl;
   test_index_of_coincidence_1();
   test_index_of_coincidence_2();
   test_basic_find();
+  test_find_plus7();
+  test_find_random2();
 }
