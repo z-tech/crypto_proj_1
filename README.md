@@ -12,8 +12,11 @@ When making guesses for the plaintext, we're more or less making guesses for fou
 It's worth noting that in a basic approach might tabulate all conceivable rules for 3 & 4 and test each combination with all key lengths and key values. This is inefficient, but given infinite time, will result in success (provided all possible rules for 3 & 4 are guessed). Unsurprisingly, we cannot bet on guessing all possible rules for 3 & 4, and additionally we have finite time to execute our crack.
 
 To improve the basic approach just described we have a number of statistical approaches to start with:
+
 A) `index of coincidence` analysis can identify probable key lengths
+
 B) for each key index, `frequency analysis` can identify probable shift values
+
 C) if ciphertext is longer than dictionary plaintext, random chars were added
 
 Together, these techniques can give us a long-ish list of initial key guesses. From there we switch gears to fitness analysis:
