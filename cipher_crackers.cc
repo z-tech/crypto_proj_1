@@ -22,7 +22,7 @@ std::pair<int, int> compare_to_dict1(std::string guess) {
 
 std::vector<std::vector<int>> generate_initial_key_guesses(std::string c, std::vector<std::pair<int, float>> lenGuesses) {
   std::vector<std::vector<int>> guesses = {};
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 10; i++) { // top 10 potential key lengths *shrug emoji*
     int len = lenGuesses[i].first;
     std::vector<int> guess1(len);
     std::vector<int> guess2(len);
@@ -47,7 +47,7 @@ bool sort_distances(std::pair<int, std::vector<int>> a, std::pair<int, std::vect
 std::string basic_crack(std::string c) {
   std::vector<std::pair<int, float>> keyLenGuesses = basic_find(c);
   std::vector<std::vector<int>> initialkeyGuesses = generate_initial_key_guesses(c, keyLenGuesses);
-  // it is extremely unlikely that any of these key guesses is correct, but we
+  // it is extremely unlikely that any of these key guesses are correct, but we
   // should be able to argue that some are "closer" to the actual key than others
   std::vector<std::pair<int, std::vector<int>>> distances = {};
   for(int i = 0; i < initialkeyGuesses.size(); i++) {
@@ -55,9 +55,11 @@ std::string basic_crack(std::string c) {
     distances.push_back(std::pair<int, std::vector<int>>(dist.first, initialkeyGuesses[i]));
   }
   sort(distances.begin(), distances.end(), sort_distances);
-  for (int i = 0; i < distances.size(); i++) {
-    std::cout << "dist: " << distances[i].first << " index: " << std::endl;
-  }
+  // std::cout << std::endl;
+  // for (int i = 0; i < distances.size(); i++) {
+  //   std::pair<int, int> t1 = compare_to_dict1(basic_deciph(c, distances[i].second));
+  //   std::cout << "dist: " << distances[i].first << " index: " << t1.second << std::endl;
+  // }
   std::pair<int, int> t = compare_to_dict1(basic_deciph(c, distances[0].second));
   return dict1[t.second];
 }

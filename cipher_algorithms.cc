@@ -15,7 +15,7 @@ std::string ciph(std::string p, std::vector<int> k, int sched) {
     } else if (sched == 2) {
       j = (i + 7) % k.size();
     } else if (sched == 3) {
-      if (i % 2 == 0) {
+      if (i <= 100 && i % 2 == 0) {
         // add two random chars
         c += 'a' + std::rand() % 26;
         c += 'a' + std::rand() % 26;
@@ -57,7 +57,7 @@ std::string deciph(std::string c, std::vector<int> k, int sched) {  // polyalpha
     } else if (sched == 2) {
       j = (i + 7) % k.size();
     } else if (sched == 3) {
-      if (i % 2 == 0) {
+      if (i <= 100 && i % 2 == 0) {
         // two random chars
         cOffset += 2;
       }
@@ -107,6 +107,7 @@ std::string plus7_deciph(std::string p, std::vector<int> k) {
 }
 
 std::string random2_ciph(std::string p, std::vector<int> k) {
+  // 100 random characters
   return ciph(p, k, 3);
 }
 
