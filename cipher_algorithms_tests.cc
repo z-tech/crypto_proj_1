@@ -28,7 +28,7 @@ void test_basic_deciph() {
 
 void test_basic_ciph_and_deciph() {
   std::cout << "\t3) The functions should ciph and deciph plaintext in numerous trials correctly -";
-  std::vector<std::vector<int>> keys = { {12, 4, 2}, {25, 1, 1, 7, 26, 9, 10}, {0}, {1}, {26}, {25, 26, 25, 26, 24, 1, 1, 1, 3, 4, 5, 6, 1, 8, 13} };
+  std::vector<std::vector<int>> keys = { {26}, {12, 4, 2}, {25, 1, 1, 7, 26, 9, 10}, {0}, {1}, {26}, {25, 26, 25, 26, 24, 1, 1, 1, 3, 4, 5, 6, 1, 8, 13} };
   std::vector<int> key;
   std::string plaintext;
   std::string ciphertext;
