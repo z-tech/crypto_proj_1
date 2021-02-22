@@ -57,6 +57,25 @@ bool sort_ics(std::pair<int, float> a, std::pair<int, float> b) {
   return (diffA < diffB);
 }
 
+// sort(ics.begin(), ics.end(), sort_ics);
+// float avgDist = get_avg_distance(ics);
+// // std::cout << "\navgDist " << avgDist << std::endl;
+// if (avgDist < 0.01 && ics[0].first % 2 == 0 && ics[1].first % 2 == 0 && ics[2].first % 2 == 0 && ics[3].first % 2 == 0 && ics[4].first % 2 == 0) {
+//   // the key len is probably 2
+//   ics.push_back(std::pair<int, float>(2, 0.065));
+// } else if (avgDist < 0.01) {
+//   // the key is still a small len, probably 1
+//   ics.push_back(std::pair<int, float>(1, 0.065));
+// }
+// float get_avg_distance(std::vector<std::pair<int, float>> ics) {
+//   float sumDist = 0.0;
+//   float englishCoinc = 0.065;
+//   for (int i = 0; i < ics.size(); i++) {
+//     sumDist += std::abs(ics[i].second - englishCoinc);
+//   }
+//   return sumDist / (float) ics.size();
+// }
+
 std::vector<std::pair<int, float>> basic_find(std::string c) {
   std::vector<std::pair<int, float>> ics = ic_over_all_periods(c);
   sort(ics.begin(), ics.end(), sort_ics);
