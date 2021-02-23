@@ -4,9 +4,9 @@
 #include <string>
 #include <vector>
 
-#include "cipher_algorithms.hh"
-#include "dictionaries.hh"
-#include "key_length_finders.hh"
+#include "../cipher_algorithms.hh"
+#include "../dictionaries.hh"
+#include "../key_length_finders.hh"
 
 void test_index_of_coincidence_1() {
   std::cout << "\t1) The index of coincidence of random characters should be roughly 0.038466 -";

@@ -3,8 +3,8 @@
 #include <string>
 #include <vector>
 
-#include "cipher_algorithms.hh"
-#include "dictionaries.hh"
+#include "../cipher_algorithms.hh"
+#include "../dictionaries.hh"
 
 void test_basic_ciph() {
   std::cout << "\t1) The ciph method should compute the expected ciphertext from plaintext -";

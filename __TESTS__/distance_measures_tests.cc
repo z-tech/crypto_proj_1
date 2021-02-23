@@ -1,7 +1,7 @@
 #include <assert.h>
 #include <iostream>
 
-#include "distance_measures.hh"
+#include "../distance_measures.hh"
 
 void test_1() {
   std::cout << "\t1) The measurer correctly calculate some levenshtein distances -";

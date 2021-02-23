@@ -3,9 +3,9 @@
 #include <string>
 #include <vector>
 
-#include "cipher_algorithms.hh"
-#include "dictionaries.hh"
-#include "frequency_analyzers.hh"
+#include "../cipher_algorithms.hh"
+#include "../dictionaries.hh"
+#include "../frequency_analyzers.hh"
 
 void test_basic_analysis() {
   std::cout << "\t1) The analyzer should determine the most likely shift amount of vigenere ciphered text with relative success -";

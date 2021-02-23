@@ -3,10 +3,10 @@
 #include <string>
 #include <vector>
 
-#include "cipher_algorithms.hh"
-#include "cipher_crackers.hh"
-#include "dictionaries.hh"
-#include "key_length_finders.hh"
+#include "../cipher_algorithms.hh"
+#include "../cipher_crackers.hh"
+#include "../dictionaries.hh"
+#include "../key_length_finders.hh"
 
 void test_basic_crack() {
   std::cout << "\t1) Vigenere cracker should find plaintext of all tiny keys -";
