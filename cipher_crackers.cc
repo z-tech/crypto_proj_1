@@ -69,26 +69,26 @@ std::vector<int> key_of_len_l_guess(std::string c, std::vector<std::pair<int, fl
 }
 
 std::vector<int> generate_initial_key_guess(std::string c, std::vector<std::pair<int, float>> lenGuesses, std::vector<std::string> dict) {
-  // 1) for each of the top 4 *shrug emoji* potential key lengths based on index of coincidence
+  // 1) for each of the top 2 *shrug emoji* potential key lengths based on index of coincidence
   auto future1 = std::async(key_of_len_l_guess, c, lenGuesses, dict, lenGuesses[0].first);
   auto future2 = std::async(key_of_len_l_guess, c, lenGuesses, dict, lenGuesses[1].first);
-  auto future3 = std::async(key_of_len_l_guess, c, lenGuesses, dict, lenGuesses[2].first);
-  auto future4 = std::async(key_of_len_l_guess, c, lenGuesses, dict, lenGuesses[3].first);
+  // auto future3 = std::async(key_of_len_l_guess, c, lenGuesses, dict, lenGuesses[2].first);
+  // auto future4 = std::async(key_of_len_l_guess, c, lenGuesses, dict, lenGuesses[3].first);
   std::vector<std::vector<int>> guesses = {};
   guesses.push_back(future1.get());
   guesses.push_back(future2.get());
-  guesses.push_back(future3.get());
-  guesses.push_back(future4.get());
+  // guesses.push_back(future3.get());
+  // guesses.push_back(future4.get());
   int globMinDist = INT_MAX;
   std::vector<int> bestKeyGuess;
   for (int i = 0; i < guesses.size(); i++) {
     std::vector<int> keyGuess = guesses[i];
     std::pair<int, int> chk = get_fitness(basic_deciph(c, keyGuess), dict);
+    // // DEBUG
+    // std::cout << "\ndist: " << chk.first << std::endl;
     if (chk.first < globMinDist) {
       globMinDist = chk.first;
       bestKeyGuess = keyGuess;
-      // // DEBUG
-      // std::cout << "\nnew globMinDist: " << globMinDist << std::endl;
     }
   }
   return bestKeyGuess;
