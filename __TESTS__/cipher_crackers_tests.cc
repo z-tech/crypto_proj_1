@@ -147,7 +147,7 @@ void test_random2_crack() {
 }
 
 void cipher_crackers_tests() {
-  std::cout << "B) Cipher Crackers" << std::endl;
+  std::cout << "E) Cipher Crackers" << std::endl;
   test_basic_crack();
   test_plus7_crack();
   test_random2_crack();

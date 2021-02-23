@@ -15,6 +15,6 @@ void test_1() {
 }
 
 void distance_measures_tests() {
-  std::cout << "C) Distance Measure Algorithms" << std::endl;
+  std::cout << "B) Distance Measure Algorithms" << std::endl;
   test_1();
 }

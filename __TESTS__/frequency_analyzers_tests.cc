@@ -24,6 +24,6 @@ void test_basic_analysis() {
 }
 
 void frequency_analyzers_tests() {
-  std::cout << "D) Frequency Analyzers" << std::endl;
+  std::cout << "C) Frequency Analyzers" << std::endl;
   test_basic_analysis();
 }

@@ -57,7 +57,7 @@ void test_find_random2() {
 }
 
 void key_length_finders_tests() {
-  std::cout << "E) Key Length Finders" << std::endl;
+  std::cout << "D) Key Length Finders" << std::endl;
   test_index_of_coincidence_1();
   test_index_of_coincidence_2();
   test_basic_find();

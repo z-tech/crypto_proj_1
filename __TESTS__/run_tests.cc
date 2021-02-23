@@ -6,8 +6,8 @@
 
 int main() {
   cipher_algorithms_tests();
-  cipher_crackers_tests();
   distance_measures_tests();
   frequency_analyzers_tests();
   key_length_finders_tests();
+  cipher_crackers_tests();
 }
