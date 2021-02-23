@@ -21,15 +21,15 @@ Together, these techniques can give us a long-ish list of initial key guesses. F
 
 C) `levenshtein distance` can identify the fitness (quality) of plaintext guesses
 
-Essentially, we can loop through a handful of the long-ish list of initial key guesses and determine a few that look promising by choosing ones with the smallest levenshtein distance from any dictionary value. Then we switch gears again to local search optimization:
+Essentially, we can loop through a handful of the long-ish list of initial key guesses and determine a few that look promising by choosing ones with the smallest levenshtein distance from any dictionary value. We then switch gears again to local search optimization:
 
-D) `hill climbing` can improve the key guesses we have through trial and error
+D) `hill climbing` can further improve the key guesses we've computed through trial and error
 
-Basically, for a handful of our promising looking key guesses, we iteratively make a change to the key and compute the fitness. If the fitness of the new key is improved, we repeat the process, otherwise we go back to the unmodified key and repeat the process with a different modification. Something neat about our solution is that we need not result to a purely stochastic process of choosing random modifications, because we already computed a ranked list of probable shift values at each index of promising keys. We can reuse these lists to only hill climb with highly ranked values.
+Basically, for a handful of our promising looking key guesses, we iteratively make a change to the key and compute the fitness. If the fitness of the new key is improved, we repeat the process, otherwise we go back to the unmodified key and repeat the process with a different modification. Something neat about our solution is that we need not result to a purely stochastic process of choosing random modifications, because we already computed a ranked list of probable shift values at each index of the promising keys. We can reuse these lists to hill climb over only highly ranked values.
 
 It's important to note that this will not always result in a perfectly reconstructed plaintext. In particular, there's seemingly little to do about random chars being inserted into the ciphertext. Given L=500, we just have to expect 50 or so random char values added and our fitness to be negatively impacted as a consequence.
 
-When we think about it a little more, we don't need to perfectly reconstruct a plaintext. We need only to cross some threshold of fitness where there is reasonable confidence that some configuration using a similar candidate key will result in a particular plaintext from the dictionary. We have many options for the value of this threshold and we're gonna set it conservatively at fitness <= 250.
+When we think about it a little more, we don't need to perfectly reconstruct a plaintext. We need only to cross some threshold of fitness where there is reasonable confidence that some configuration using a similar candidate key will result in a particular plaintext from the dictionary. We have many options for the value of this threshold and we're gonna set it conservatively at fitness <= 250. Note this is consequently a system of classification and in turn is subject to false-postives/ false-negatives.
 
 https://eprint.iacr.org/2020/302.pdf
 
