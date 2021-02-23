@@ -12,7 +12,7 @@ void test_basic_analysis() {
   std::vector<int> k;
   std::string c;
   std::vector<std::pair<int, float>> received;
-  for (int i = 0; i < 26; i++) {
+  for (int i = 1; i < 27; i++) {
     k.resize(0);
     k.push_back(i);
     c = basic_ciph(dict1[0], k);

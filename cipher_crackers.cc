@@ -1,7 +1,8 @@
-// #include <boost/thread.hpp>
+#include <future>
 #include <iostream>
 #include <limits.h>
 #include <string>
+#include <thread>
 #include <vector>
 
 #include "cipher_algorithms.hh"
@@ -68,21 +69,20 @@ std::vector<int> key_of_len_l_guess(std::string c, std::vector<std::pair<int, fl
 }
 
 std::vector<int> generate_initial_key_guess(std::string c, std::vector<std::pair<int, float>> lenGuesses, std::vector<std::string> dict) {
+  // 1) for each of the top 4 *shrug emoji* potential key lengths based on index of coincidence
+  auto future1 = std::async(key_of_len_l_guess, c, lenGuesses, dict, lenGuesses[0].first);
+  auto future2 = std::async(key_of_len_l_guess, c, lenGuesses, dict, lenGuesses[1].first);
+  auto future3 = std::async(key_of_len_l_guess, c, lenGuesses, dict, lenGuesses[2].first);
+  auto future4 = std::async(key_of_len_l_guess, c, lenGuesses, dict, lenGuesses[3].first);
   std::vector<std::vector<int>> guesses = {};
+  guesses.push_back(future1.get());
+  guesses.push_back(future2.get());
+  guesses.push_back(future3.get());
+  guesses.push_back(future4.get());
   int globMinDist = INT_MAX;
   std::vector<int> bestKeyGuess;
-  // 1) for each of the top 3 *shrug emoji* potential key lengths based on index of coincidence
-  // std::vector<boost::unique_future<std::vector<int>>> futures;
-  for (int i = 0; i < 3; i++) {
-    int keyLen = lenGuesses[i].first;
-    std::vector<int> keyGuess = key_of_len_l_guess(c, lenGuesses, dict, keyLen);
-    // boost::packaged_task<std::vector<int>> pt(key_of_len_l_guess, c, lenGuesses, dict, lenGuesses[i].first);
-    // futures.push_back(pt.get_future());
-    // boost::thread task(std::move(pt));
-  //}
-  //boost::wait_for_all(futures.begin(), futures.end());
-  //return futures[0].get();
-    // 5) lastly, check if fitness of this key is better than fitness of current best guess
+  for (int i = 0; i < guesses.size(); i++) {
+    std::vector<int> keyGuess = guesses[i];
     std::pair<int, int> chk = get_fitness(basic_deciph(c, keyGuess), dict);
     if (chk.first < globMinDist) {
       globMinDist = chk.first;

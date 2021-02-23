@@ -9,11 +9,18 @@
 #include "key_length_finders.hh"
 
 void test_basic_crack() {
-  std::cout << "\t1) Vigenere cracker should find plaintext of a tiny key -";
-  std::vector<int> k1 = { 6 };
-  std::string c1 = basic_ciph(dict1[0], k1);
-  std::string received1 = basic_crack(c1);
-  assert(received1 == dict1[0]);
+  std::cout << "\t1) Vigenere cracker should find plaintext of all tiny keys -";
+  std::vector<int> k;
+  std::string c;
+  std::string received;
+  for (int i = 1; i < 27; i++) {
+    k.resize(0);
+    k.push_back(i);
+    c = basic_ciph(dict1[0], k);
+    received = basic_crack(c);
+    // not foolproof, but strong indicator
+    assert(received == dict1[0]);
+  }
   std::cout << " PASS" << std::endl;
 
   std::cout << "\t2) Vigenere cracker should find plaintext of a small key -";
@@ -47,7 +54,7 @@ void test_basic_crack() {
 
 void test_plus7_crack() {
   std::cout << "\t6) Plus7 cracker should find plaintext of a tiny key -";
-  std::vector<int> k1 = { 6 };
+  std::vector<int> k1 = { 26 };
   std::string c1 = plus7_ciph(dict1[0], k1);
   std::string received1 = basic_crack(c1);
   assert(received1 == dict1[0]);
@@ -141,7 +148,7 @@ void test_random2_crack() {
 
 void cipher_crackers_tests() {
   std::cout << "B) Cipher Crackers" << std::endl;
-  // test_basic_crack();
-  // test_plus7_crack();
+  test_basic_crack();
+  test_plus7_crack();
   test_random2_crack();
 }
