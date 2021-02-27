@@ -8,7 +8,7 @@ std::string ciph(std::string p, std::vector<int> k, int sched) {
   std::string c = "";
   int j, s, t;
   char r;
-  for(int i = 0; i < p.length(); i++) {
+  for(unsigned int i = 0; i < p.length(); i++) {
     // 1) choose index in k
     if (sched == 1) {
       j = i % k.size();
@@ -50,7 +50,7 @@ std::string deciph(std::string c, std::vector<int> k, int sched) {  // polyalpha
   std::string p = "";
   int j, s, t, cOffset = 0;;
   char r;
-  for(int i = 0; i < c.length() - cOffset; i++) {
+  for(unsigned int i = 0; i < c.length() - cOffset; i++) {
     // 1) choose index in k
     if (sched == 1) {
       j = i % k.size();

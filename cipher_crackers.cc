@@ -16,7 +16,7 @@ std::pair<int, int> get_fitness(std::string guess, std::vector<std::string> dict
     throw std::invalid_argument("expected dictionary to have length greater than zero");
   }
   int dictIndex, localDist, minDist = INT_MAX;
-  for (int i = 0; i < dict.size(); i++) {
+  for (unsigned int i = 0; i < dict.size(); i++) {
     localDist = levenshtein_distance(dict[i], guess);
     if (localDist < minDist) {
       minDist = localDist;
@@ -81,7 +81,7 @@ std::vector<int> generate_initial_key_guess(std::string c, std::vector<std::pair
   // guesses.push_back(future4.get());
   int globMinDist = INT_MAX;
   std::vector<int> bestKeyGuess;
-  for (int i = 0; i < guesses.size(); i++) {
+  for (unsigned int i = 0; i < guesses.size(); i++) {
     std::vector<int> keyGuess = guesses[i];
     std::pair<int, int> chk = get_fitness(basic_deciph(c, keyGuess), dict);
     // DEBUG

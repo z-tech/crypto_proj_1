@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <cmath>
 #include <iomanip>
 #include <iostream>
@@ -39,7 +40,7 @@ bool sort_diffs(std::pair<int, float> a, std::pair<int, float> b) {
 std::vector<std::pair<int, float>> basic_analysis(std::string c, int start, int period) {
   int numChars = 0;
   std::vector<int> charDist (27, 0);
-  for (int i = start; i < c.length(); i += period) {
+  for (unsigned int i = start; i < c.length(); i += period) {
     if (c[i] == ' ') {
       charDist[26]++;
     } else {
