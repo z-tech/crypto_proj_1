@@ -2,7 +2,6 @@
 #include <iostream>
 #include <limits.h>
 #include <string>
-#include <thread>
 #include <vector>
 
 #include "cipher_algorithms.hh"
