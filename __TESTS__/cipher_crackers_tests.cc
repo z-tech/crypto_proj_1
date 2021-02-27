@@ -133,9 +133,9 @@ void test_random2_crack() {
   std::string plaintext;
   std::string ciphertext;
   std:: string received;
-  for (int i = 0; i < keys.size(); i++) {
+  for (unsigned int i = 0; i < keys.size(); i++) {
     key = keys[i];
-    for (int j = 0; j < dict1.size(); j++) {
+    for (unsigned int j = 0; j < dict1.size(); j++) {
       plaintext = dict1[j];
       ciphertext = random2_ciph(plaintext, key);
       received = basic_crack(ciphertext);

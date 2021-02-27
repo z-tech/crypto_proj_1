@@ -33,9 +33,9 @@ void test_basic_ciph_and_deciph() {
   std::string plaintext;
   std::string ciphertext;
   std:: string received;
-  for (int i = 0; i < keys.size(); i++) {
+  for (unsigned int i = 0; i < keys.size(); i++) {
     key = keys[i];
-    for (int j = 0; j < dict1.size(); j++) {
+    for (unsigned int j = 0; j < dict1.size(); j++) {
       plaintext = dict1[j];
       ciphertext = basic_ciph(plaintext, key);
       received = basic_deciph(ciphertext, key);
@@ -52,9 +52,9 @@ void test_plus7_ciph_and_deciph() {
   std::string plaintext;
   std::string ciphertext;
   std:: string received;
-  for (int i = 0; i < keys.size(); i++) {
+  for (unsigned int i = 0; i < keys.size(); i++) {
     key = keys[i];
-    for (int j = 0; j < dict1.size(); j++) {
+    for (unsigned int j = 0; j < dict1.size(); j++) {
       plaintext = dict1[j];
       ciphertext = plus7_ciph(plaintext, key);
       received = plus7_deciph(ciphertext, key);
@@ -71,9 +71,9 @@ void test_random2_ciph_and_deciph() {
   std::string plaintext;
   std::string ciphertext;
   std:: string received;
-  for (int i = 0; i < keys.size(); i++) {
+  for (unsigned int i = 0; i < keys.size(); i++) {
     key = keys[i];
-    for (int j = 0; j < dict1.size(); j++) {
+    for (unsigned int j = 0; j < dict1.size(); j++) {
       plaintext = dict1[j];
       ciphertext = random2_ciph(plaintext, key);
       received = random2_deciph(ciphertext, key);
