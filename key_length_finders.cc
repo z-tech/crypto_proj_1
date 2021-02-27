@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <cmath>
 #include <iomanip>
 #include <iostream>
@@ -8,7 +9,7 @@ float index_of_coincidence(std::string c, int start, int period) {
   // 1) count chars and frequency of each char a..z, ignore any other chars including space
   int numChars = 0;
   std::vector<int> charDist = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-  for (int i = start; i < c.length(); i += period) {
+  for (unsigned int i = start; i < c.length(); i += period) {
     if (c[i] < 'a') continue;
     if (c[i] > 'z') continue;
     charDist[c[i] - 'a']++;
