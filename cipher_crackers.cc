@@ -84,8 +84,8 @@ std::vector<int> generate_initial_key_guess(std::string c, std::vector<std::pair
   for (int i = 0; i < guesses.size(); i++) {
     std::vector<int> keyGuess = guesses[i];
     std::pair<int, int> chk = get_fitness(basic_deciph(c, keyGuess), dict);
-    // // DEBUG
-    // std::cout << "\ndist: " << chk.first << std::endl;
+    // DEBUG
+    std::cout << "\ndist: " << chk.first << std::endl;
     if (chk.first < globMinDist) {
       globMinDist = chk.first;
       bestKeyGuess = keyGuess;
@@ -96,7 +96,14 @@ std::vector<int> generate_initial_key_guess(std::string c, std::vector<std::pair
 
 std::string basic_crack(std::string c) {
   std::vector<std::pair<int, float>> keyLenGuesses = basic_find(c);
-  std::vector<int> keyGuess = generate_initial_key_guess(c, keyLenGuesses, dict1);
-  std::pair<int, int> tmp = get_fitness(basic_deciph(c, keyGuess), dict1);
-  return dict1[tmp.second];
+  std::vector<int> keyGuess1 = generate_initial_key_guess(c, keyLenGuesses, dict1);
+  std::pair<int, int> tmp1 = get_fitness(basic_deciph(c, keyGuess1), dict1);
+  if (tmp1.first < 215) {
+    // fitness of 215 or better we'll classify as test 1 success
+    return dict1[tmp1.second];
+  }
+  std::vector<int> keyGuess2 = generate_initial_key_guess(c, keyLenGuesses, words1);
+  // std::pair<int, int> tmp2 = get_fitness(basic_deciph(c, keyGuess2), words1);
+  // std::cout << tmp2.first << " and " << basic_deciph(c, keyGuess2) << std::endl;
+  return basic_deciph(c, keyGuess2);
 }
