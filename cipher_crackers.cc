@@ -84,7 +84,7 @@ std::vector<int> generate_initial_key_guess(std::string c, std::vector<std::pair
     std::vector<int> keyGuess = guesses[i];
     std::pair<int, int> chk = get_fitness(basic_deciph(c, keyGuess), dict);
     // DEBUG
-    std::cout << "\ndist: " << chk.first << std::endl;
+    // std::cout << "\ndist: " << chk.first << std::endl;
     if (chk.first < globMinDist) {
       globMinDist = chk.first;
       bestKeyGuess = keyGuess;
