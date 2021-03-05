@@ -20,7 +20,6 @@ void test_basic_crack() {
     k.push_back(i);
     c = basic_ciph(dict1[0], k);
     received = basic_crack(c);
-    // not foolproof, but strong indicator
     assert(received == dict1[0]);
   }
   std::cout << " PASS" << std::endl;
@@ -140,7 +139,7 @@ void test_random2_crack() {
       ciphertext = random2_ciph(plaintext, key);
       received = basic_crack(ciphertext);
       if (received != plaintext) {
-        std::cout << "i: " << i << " j: " << j << std::endl;
+        std::cout << "i: " << i << " j: " << j << "received: " << received << std::endl;
       }
       assert(received == plaintext);
     }
@@ -184,8 +183,8 @@ void test_2_crack() {
   std::string p3 = get_dict_2_string();
   std::string c3 = basic_ciph(p3, k3);
   std::string received3 = basic_crack(c3);
-  // std::cout << " ORIGINAL: " << p3 << std::endl;
-  // std::cout << " RECEIVED: " << received3 << std::endl;
+  std::cout << " ORIGINAL: " << p3 << std::endl;
+  std::cout << " RECEIVED: " << received3 << std::endl;
   assert(received3 == p3);
   std::cout << " PASS" << std::endl;
 
@@ -194,8 +193,8 @@ void test_2_crack() {
   std::string p4 = get_dict_2_string();
   std::string c4 = basic_ciph(p4, k4);
   std::string received4 = basic_crack(c4);
-  // std::cout << " ORIGINAL: " << p4 << std::endl;
-  // std::cout << " RECEIVED: " << received4 << std::endl;
+  std::cout << " ORIGINAL: " << p4 << std::endl;
+  std::cout << " RECEIVED: " << received4 << std::endl;
   assert(received4 == p4);
   std::cout << " PASS" << std::endl;
 
@@ -204,8 +203,8 @@ void test_2_crack() {
   std::string p5 = get_dict_2_string();
   std::string c5 = basic_ciph(p5, k5);
   std::string received5 = basic_crack(c5);
-  // std::cout << " ORIGINAL: " << p5 << std::endl;
-  // std::cout << " RECEIVED: " << received5 << std::endl;
+  std::cout << " ORIGINAL: " << p5 << std::endl;
+  std::cout << " RECEIVED: " << received5 << std::endl;
   assert(received5 == p5);
   std::cout << " PASS" << std::endl;
 }
