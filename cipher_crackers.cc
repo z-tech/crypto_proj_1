@@ -87,8 +87,8 @@ std::vector<int> generate_initial_key_guess(std::string c, std::vector<std::pair
   for (unsigned int i = 0; i < 2; i++) {
     std::vector<int> keyGuess = futures[i].get();
     std::pair<int, int> chk = get_fitness(basic_deciph(c, keyGuess), dict);
-    // DEBUG
-    std::cout << "\ndist: " << chk.first << std::endl;
+    // // DEBUG
+    // std::cout << "\ndist: " << chk.first << std::endl;
     if (chk.first < globMinDist) {
       globMinDist = chk.first;
       bestKeyGuess = keyGuess;
@@ -106,7 +106,5 @@ std::string basic_crack(std::string c) {
     return dict1[tmp1.second];
   }
   std::vector<int> keyGuess2 = generate_initial_key_guess(c, keyLenGuesses, words1);
-  // std::pair<int, int> tmp2 = get_fitness(basic_deciph(c, keyGuess2), words1);
-  // std::cout << tmp2.first << " and " << basic_deciph(c, keyGuess2) << std::endl;
   return basic_deciph(c, keyGuess2);
 }
