@@ -18,9 +18,13 @@ std::pair<int, int> get_fitness(std::string guess, std::vector<std::string> dict
   for (unsigned int i = 0; i < dict.size(); i++) {
     futures.push_back(std::async(levenshtein_distance, dict[i], guess));
   }
-  int dictIndex, localDist, minDist = INT_MAX;
+  int dictIndex, localDist, minDist = INT_MAX, compScore = 0;
   for (unsigned int i = 0; i < dict.size(); i++) {
     localDist = futures[i].get();
+    // std::cout << "dist of: " << dict[i] << " is: " << localDist << std::endl;
+    if (localDist == 0) {
+      compScore -= 1;
+    }
     if (localDist < minDist) {
       minDist = localDist;
       dictIndex = i;
@@ -29,7 +33,11 @@ std::pair<int, int> get_fitness(std::string guess, std::vector<std::string> dict
   if (minDist == INT_MAX) {
     throw std::runtime_error("expected to compute fitness better than INT_MAX");
   }
-  return std::pair<int, int> (minDist, dictIndex);
+  if (compScore < 0) {
+    return std::pair<int, int> (compScore, dictIndex);
+  } else {
+    return std::pair<int, int> (minDist, dictIndex);
+  }
 }
 
 std::vector<std::vector<int>> get_list_of_probable_shifts(std::string c, int period) {
