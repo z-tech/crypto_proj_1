@@ -206,6 +206,7 @@ void test_2_crack() {
   std::string received5 = basic_crack(c5);
   // std::cout << " ORIGINAL: " << p5 << std::endl;
   // std::cout << " RECEIVED: " << received5 << std::endl;
+  std::cout << " DIFF: " << levenshtein_distance(p5, received5) << std::endl;
   assert(levenshtein_distance(p5, received5) < 70);
   std::cout << " PASS" << std::endl;
 }

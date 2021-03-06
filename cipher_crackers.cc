@@ -18,9 +18,13 @@ std::pair<int, int> get_fitness(std::string guess, std::vector<std::string> dict
   for (unsigned int i = 0; i < dict.size(); i++) {
     futures.push_back(std::async(levenshtein_distance, dict[i], guess));
   }
-  int dictIndex, localDist, minDist = INT_MAX;
+  int dictIndex, localDist, minDist = INT_MAX, compScore = 0;
   for (unsigned int i = 0; i < dict.size(); i++) {
     localDist = futures[i].get();
+    std::cout << "dist of: " << dict[i] << " is: " << localDist << std::endl;
+    if (localDist == 0) {
+      compScore -= 1;
+    }
     if (localDist < minDist) {
       minDist = localDist;
       dictIndex = i;
@@ -29,7 +33,11 @@ std::pair<int, int> get_fitness(std::string guess, std::vector<std::string> dict
   if (minDist == INT_MAX) {
     throw std::runtime_error("expected to compute fitness better than INT_MAX");
   }
-  return std::pair<int, int> (minDist, dictIndex);
+  if (compScore < 0) {
+    return std::pair<int, int> (compScore, dictIndex);
+  } else {
+    return std::pair<int, int> (minDist, dictIndex);
+  }
 }
 
 std::vector<std::vector<int>> get_list_of_probable_shifts(std::string c, int period) {
@@ -79,12 +87,12 @@ std::vector<int> key_of_len_l_guess(std::string c, std::vector<std::pair<int, fl
 std::vector<int> generate_initial_key_guess(std::string c, std::vector<std::pair<int, float>> lenGuesses, std::vector<std::string> dict) {
   // 1) for each of the top 2 *shrug emoji* potential key lengths based on index of coincidence
   std::vector<std::future<std::vector<int>>> futures = {};
-  for (int i = 0; i < 2; i++) {
+  for (int i = 0; i < 10; i++) {
     futures.push_back(std::async(key_of_len_l_guess, c, lenGuesses, dict, lenGuesses[i].first));
   }
   int globMinDist = INT_MAX;
   std::vector<int> bestKeyGuess;
-  for (unsigned int i = 0; i < 2; i++) {
+  for (unsigned int i = 0; i < 10; i++) {
     std::vector<int> keyGuess = futures[i].get();
     std::pair<int, int> chk = get_fitness(basic_deciph(c, keyGuess), dict);
     // // DEBUG
