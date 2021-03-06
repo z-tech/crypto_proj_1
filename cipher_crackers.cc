@@ -87,12 +87,12 @@ std::vector<int> key_of_len_l_guess(std::string c, std::vector<std::pair<int, fl
 std::vector<int> generate_initial_key_guess(std::string c, std::vector<std::pair<int, float>> lenGuesses, std::vector<std::string> dict) {
   // 1) for each of the top 2 *shrug emoji* potential key lengths based on index of coincidence
   std::vector<std::future<std::vector<int>>> futures = {};
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < 2; i++) {
     futures.push_back(std::async(key_of_len_l_guess, c, lenGuesses, dict, lenGuesses[i].first));
   }
   int globMinDist = INT_MAX;
   std::vector<int> bestKeyGuess;
-  for (unsigned int i = 0; i < 10; i++) {
+  for (unsigned int i = 0; i < 2; i++) {
     std::vector<int> keyGuess = futures[i].get();
     std::pair<int, int> chk = get_fitness(basic_deciph(c, keyGuess), dict);
     // // DEBUG
