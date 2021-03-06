@@ -68,7 +68,7 @@ std::vector<int> key_of_len_l_guess(std::string c, std::vector<std::pair<int, fl
     keyGuess.push_back(probableShifts[j][0]);
   }
   // 3) finally, "hill climb" by swapping probable shift values at each index, comparing fitness
-  int rounds = 10;
+  int rounds = 5;
   while (rounds > 0) {
     for (int j = 0; j < keyLen; j++) {
       int minIndex = 0;
@@ -97,7 +97,7 @@ std::vector<int> key_of_len_l_guess(std::string c, std::vector<std::pair<int, fl
 std::vector<int> generate_initial_key_guess(std::string c, std::vector<std::pair<int, float>> lenGuesses, std::vector<std::string> dict) {
   // 1) for each of the top 2 *shrug emoji* potential key lengths based on index of coincidence
   std::vector<std::future<std::vector<int>>> futures = {};
-  for (int i = 0; i < 4; i++) {
+  for (int i = 0; i < 2; i++) {
     futures.push_back(std::async(key_of_len_l_guess, c, lenGuesses, dict, lenGuesses[i].first));
   }
   int globMinDist = INT_MAX;
@@ -119,8 +119,8 @@ std::string basic_crack(std::string c) {
   std::vector<std::pair<int, float>> keyLenGuesses = basic_find(c);
   std::vector<int> keyGuess1 = generate_initial_key_guess(c, keyLenGuesses, dict1);
   std::pair<int, int> tmp1 = get_fitness(basic_deciph(c, keyGuess1), dict1);
-  if (tmp1.first < 215) {
-    // fitness of 215 or better we'll classify as test 1 success
+  if (tmp1.first < 200) {
+    // fitness of 200 or better we'll classify as test 1 success
     return dict1[tmp1.second];
   }
   std::vector<int> keyGuess2 = generate_initial_key_guess(c, keyLenGuesses, words1);

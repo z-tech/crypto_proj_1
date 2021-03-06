@@ -299,7 +299,7 @@ void test_2_random2_crack() {
   std::cout << " DIFF: " << levenshtein_distance(p3, received3) << std::endl;
   assert(levenshtein_distance(p3, received3) < 100);
   std::cout << " PASS" << std::endl;
-  // 
+  //
   // std::cout << "\t20) Test 2 random2 cracker should find plaintext of a larger key -";
   // std::vector<int> k4 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
   // std::string p4 = get_dict_2_string();
