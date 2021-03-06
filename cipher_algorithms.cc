@@ -4,7 +4,7 @@
 
 #include "cipher_algorithms.hh"
 
-std::string ciph(std::string p, std::vector<int> k, int sched) {
+std::string ciph(std::string p, std::vector<int> k, int sched = 1) {
   std::string c = "";
   int j, s, t;
   char r;
@@ -46,7 +46,7 @@ std::string ciph(std::string p, std::vector<int> k, int sched) {
   return c;
 }
 
-std::string deciph(std::string c, std::vector<int> k, int sched) {  // polyalpha
+std::string deciph(std::string c, std::vector<int> k, int sched = 1) {  // polyalpha
   std::string p = "";
   int j, s, t, cOffset = 0;;
   char r;

@@ -68,23 +68,27 @@ std::vector<int> key_of_len_l_guess(std::string c, std::vector<std::pair<int, fl
     keyGuess.push_back(probableShifts[j][0]);
   }
   // 3) finally, "hill climb" by swapping probable shift values at each index, comparing fitness
-  for (int j = 0; j < keyLen; j++) {
-    int minIndex = 0;
-    int minDist = INT_MAX;
-    for (int k = 0; k < 4; k++) {
-      keyGuess[j] = probableShifts[j][k];
-      std::pair<int, int> tmp = get_fitness(basic_deciph(c, keyGuess), dict);
-      if (tmp.first == 0 && dict.size() == 5) {
-        // this could be written better, but basically this is test 1 and we
-        // recomputed exactly the plaintext, so don't do a bunch of extra work
-        return keyGuess;
+  int rounds = 10;
+  while (rounds > 0) {
+    for (int j = 0; j < keyLen; j++) {
+      int minIndex = 0;
+      int minDist = INT_MAX;
+      for (int k = 0; k < 10; k++) {
+        keyGuess[j] = probableShifts[j][k];
+        std::pair<int, int> tmp = get_fitness(basic_deciph(c, keyGuess), dict);
+        if (tmp.first == 0 && dict.size() == 5) {
+          // this could be written better, but basically this is test 1 and we
+          // recomputed exactly the plaintext, so don't do a bunch of extra work
+          return keyGuess;
+        }
+        if (tmp.first < minDist) {
+          minDist = tmp.first;
+          minIndex = k;
+        }
       }
-      if (tmp.first < minDist) {
-        minDist = tmp.first;
-        minIndex = k;
-      }
+      keyGuess[j] = probableShifts[j][minIndex];
     }
-    keyGuess[j] = probableShifts[j][minIndex];
+    rounds--;
   }
   // 4) unlikely to be exact, but better than many other guesses
   return keyGuess;
@@ -93,7 +97,7 @@ std::vector<int> key_of_len_l_guess(std::string c, std::vector<std::pair<int, fl
 std::vector<int> generate_initial_key_guess(std::string c, std::vector<std::pair<int, float>> lenGuesses, std::vector<std::string> dict) {
   // 1) for each of the top 2 *shrug emoji* potential key lengths based on index of coincidence
   std::vector<std::future<std::vector<int>>> futures = {};
-  for (int i = 0; i < 2; i++) {
+  for (int i = 0; i < 4; i++) {
     futures.push_back(std::async(key_of_len_l_guess, c, lenGuesses, dict, lenGuesses[i].first));
   }
   int globMinDist = INT_MAX;
