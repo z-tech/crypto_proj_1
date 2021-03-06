@@ -68,12 +68,12 @@ std::vector<int> key_of_len_l_guess(std::string c, std::vector<std::pair<int, fl
     keyGuess.push_back(probableShifts[j][0]);
   }
   // 3) finally, "hill climb" by swapping probable shift values at each index, comparing fitness
-  int rounds = 5;
+  int rounds = 4;
   while (rounds > 0) {
     for (int j = 0; j < keyLen; j++) {
       int minIndex = 0;
       int minDist = INT_MAX;
-      for (int k = 0; k < 10; k++) {
+      for (int k = 0; k < 6; k++) {
         keyGuess[j] = probableShifts[j][k];
         std::pair<int, int> tmp = get_fitness(basic_deciph(c, keyGuess), dict);
         if (tmp.first == 0 && dict.size() == 5) {
