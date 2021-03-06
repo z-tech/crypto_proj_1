@@ -21,7 +21,7 @@ std::pair<int, int> get_fitness(std::string guess, std::vector<std::string> dict
   int dictIndex, localDist, minDist = INT_MAX, compScore = 0;
   for (unsigned int i = 0; i < dict.size(); i++) {
     localDist = futures[i].get();
-    std::cout << "dist of: " << dict[i] << " is: " << localDist << std::endl;
+    // std::cout << "dist of: " << dict[i] << " is: " << localDist << std::endl;
     if (localDist == 0) {
       compScore -= 1;
     }
