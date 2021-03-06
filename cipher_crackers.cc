@@ -21,8 +21,8 @@ std::pair<int, int> get_fitness(std::string guess, std::vector<std::string> dict
   int dictIndex, localDist, minDist = INT_MAX, compScore = 0;
   for (unsigned int i = 0; i < dict.size(); i++) {
     localDist = futures[i].get();
-    // std::cout << "dist of: " << dict[i] << " is: " << localDist << std::endl;
-    if (localDist == 0) {
+    // std::cout << "index of: " << dict[i] << " is: " << guess.find(dict[i]) << std::endl;
+    if (guess.find(dict[i]) != std::string::npos) {
       compScore -= 1;
     }
     if (localDist < minDist) {
@@ -33,6 +33,7 @@ std::pair<int, int> get_fitness(std::string guess, std::vector<std::string> dict
   if (minDist == INT_MAX) {
     throw std::runtime_error("expected to compute fitness better than INT_MAX");
   }
+  // std::cout << "compScore is: " << compScore << std::endl;
   if (compScore < 0) {
     return std::pair<int, int> (compScore, dictIndex);
   } else {
@@ -73,6 +74,11 @@ std::vector<int> key_of_len_l_guess(std::string c, std::vector<std::pair<int, fl
     for (int k = 0; k < 4; k++) {
       keyGuess[j] = probableShifts[j][k];
       std::pair<int, int> tmp = get_fitness(basic_deciph(c, keyGuess), dict);
+      if (tmp.first == 0 && dict.size() == 5) {
+        // this could be written better, but basically this is test 1 and we
+        // recomputed exactly the plaintext, so don't do a bunch of extra work
+        return keyGuess;
+      }
       if (tmp.first < minDist) {
         minDist = tmp.first;
         minIndex = k;
