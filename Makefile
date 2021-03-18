@@ -7,7 +7,7 @@ TSTS=./__TESTS__/cipher_algorithms_tests.cc ./__TESTS__/cipher_crackers_tests.cc
 OBJS=$(subst .cc,.o,$(SRCS))
 
 all: $(OBJS)
-		$(CXX) $(CPPFLAGS) -o maharjan-roberts-zitek-decrypt $(OBJS) main.cc
+		$(CXX) $(CPPFLAGS) -o maharjan-roberts-zitek-decrypt $(OBJS) maharjan-roberts-zitek-decrypt-source.cc
 test: $(OBJS)
 		$(CXX) $(CPPFLAGS) -o ./run_tests.exe $(OBJS) $(TSTS) ./__TESTS__/run_tests.cc && time ./run_tests.exe
 clean:
