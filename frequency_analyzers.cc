@@ -12,13 +12,6 @@ std::vector<float> dict1Freqs = {
   0.008, 0.0044, 0.0028, 0.016, 0.0052, 0.1072           // V-Z SPACE
 };
 
-std::vector<float> words1Freqs = {
-  0.0386598, 0.0206186, 0.0438144, 0.0309278, 0.121134, 0.0103093, 0.00773196, // A-G
-  0.0231959, 0.0773196, 0.0, 0.00257732, 0.0412371, 0.0283505, 0.0515464,      // H-N
-  0.064433, 0.0309278, 0.0, 0.064433, 0.108247, 0.0592784, 0.0335052,          // O-U
-  0.00773196, 0.0103093, 0.0, 0.0180412, 0.00257732, 0.103093                  // V-Z SPACE
-};
-
 float get_freq_diff(std::vector<float> freqs, int shift, std::vector<float> dictFreq) {
   // when shift is zero you expect e to be most frequent, t second most, z least, etc
   float freq, engFreq, diff, sumDiff = 0.0;
@@ -55,11 +48,7 @@ std::vector<std::pair<int, float>> basic_analysis(std::string c, int start, int 
   std::vector<std::pair<int, float>> diffs;
   float diff;
   for (int i = 0; i < 27; i++) {
-    if (dict.size() == 5) {
-      diff = get_freq_diff(freqs, i, dict1Freqs);
-    } else {
-      diff = get_freq_diff(freqs, i, words1Freqs);
-    }
+    diff = get_freq_diff(freqs, i, dict1Freqs);
     diffs.push_back(std::make_pair(i, diff));
   }
   sort(diffs.begin(), diffs.end(), sort_diffs);
