@@ -37,7 +37,7 @@ bool sort_diffs(std::pair<int, float> a, std::pair<int, float> b) {
   return (a.second < b.second);
 }
 
-std::vector<std::pair<int, float>> basic_analysis(std::string c, int start, int period) {
+std::vector<std::pair<int, float>> basic_analysis(std::string c, int start, int period, std::vector<std::string> dict) {
   int numChars = 0;
   std::vector<int> charDist (27, 0);
   for (unsigned int i = start; i < c.length(); i += period) {
@@ -55,7 +55,11 @@ std::vector<std::pair<int, float>> basic_analysis(std::string c, int start, int 
   std::vector<std::pair<int, float>> diffs;
   float diff;
   for (int i = 0; i < 27; i++) {
-    diff = get_freq_diff(freqs, i, dict1Freqs);
+    if (dict.size() == 5) {
+      diff = get_freq_diff(freqs, i, dict1Freqs);
+    } else {
+      diff = get_freq_diff(freqs, i, words1Freqs);
+    }
     diffs.push_back(std::make_pair(i, diff));
   }
   sort(diffs.begin(), diffs.end(), sort_diffs);

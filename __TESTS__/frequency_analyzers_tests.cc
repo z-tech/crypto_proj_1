@@ -16,7 +16,7 @@ void test_basic_analysis() {
     k.resize(0);
     k.push_back(i);
     c = basic_ciph(dict1[0], k);
-    received = basic_analysis(c, 0, 1);
+    received = basic_analysis(c, 0, 1, dict1);
     // not foolproof, but strong indicator
     assert(received[0].first == i || received[1].first == i || received[2].first == i);
   }

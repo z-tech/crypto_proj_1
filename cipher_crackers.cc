@@ -41,10 +41,10 @@ std::pair<int, int> get_fitness(std::string guess, std::vector<std::string> dict
   }
 }
 
-std::vector<std::vector<int>> get_list_of_probable_shifts(std::string c, int period) {
+std::vector<std::vector<int>> get_list_of_probable_shifts(std::string c, int period, std::vector<std::string> dict) {
   std::vector<std::future<std::vector<std::pair<int, float>>>> futures = {};
   for (int j = 0; j < period; j++) {
-    futures.push_back(std::async(basic_analysis, c, j, period));
+    futures.push_back(std::async(basic_analysis, c, j, period, dict));
   }
 
   std::vector<std::vector<int>> res = {};
@@ -61,7 +61,7 @@ std::vector<std::vector<int>> get_list_of_probable_shifts(std::string c, int per
 
 std::vector<int> key_of_len_l_guess(std::string c, std::vector<std::pair<int, float>> lenGuesses, std::vector<std::string> dict, int keyLen) {
   // 1) for every index in this key length, frequency analyze for most probable shift values
-  std::vector<std::vector<int>> probableShifts = get_list_of_probable_shifts(c, keyLen);
+  std::vector<std::vector<int>> probableShifts = get_list_of_probable_shifts(c, keyLen, dict);
   // 2) then using the most probable at each index create a "base" guess of this key
   std::vector<int> keyGuess = {};
   for (int j = 0; j < keyLen; j++) {

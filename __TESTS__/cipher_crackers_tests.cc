@@ -289,36 +289,36 @@ void test_2_random2_crack() {
   assert(levenshtein_distance(p2, received2) < 100);
   std::cout << " PASS" << std::endl;
 
-  // std::cout << "\t19) Test 2 random2 cracker should find plaintext of a medium key -";
-  // std::vector<int> k3 = { 26, 26, 26, 1, 0, 1, 2, 4, 6, 8 };
-  // std::string p3 = get_dict_2_string();
-  // std::string c3 = random2_ciph(p3, k3);
-  // std::string received3 = basic_crack(c3);
+  std::cout << "\t19) Test 2 random2 cracker should find plaintext of a medium key -";
+  std::vector<int> k3 = { 26, 26, 26, 1, 0, 1, 2, 4, 6, 8 };
+  std::string p3 = get_dict_2_string();
+  std::string c3 = random2_ciph(p3, k3);
+  std::string received3 = basic_crack(c3);
   // std::cout << " ORIGINAL: " << p3 << std::endl;
   // std::cout << " RECEIVED: " << received3 << std::endl;
-  // std::cout << " DIFF: " << levenshtein_distance(p3, received3) << std::endl;
+  std::cout << " DIFF: " << levenshtein_distance(p3, received3) << std::endl;
   // assert(levenshtein_distance(p3, received3) < 100);
   // std::cout << " PASS" << std::endl;
-  //
-  // std::cout << "\t20) Test 2 random2 cracker should find plaintext of a larger key -";
-  // std::vector<int> k4 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
-  // std::string p4 = get_dict_2_string();
-  // std::string c4 = random2_ciph(p4, k4);
-  // std::string received4 = basic_crack(c4);
+
+  std::cout << "\t20) Test 2 random2 cracker should find plaintext of a larger key -";
+  std::vector<int> k4 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
+  std::string p4 = get_dict_2_string();
+  std::string c4 = random2_ciph(p4, k4);
+  std::string received4 = basic_crack(c4);
   // std::cout << " ORIGINAL: " << p4 << std::endl;
   // std::cout << " RECEIVED: " << received4 << std::endl;
-  // std::cout << " DIFF: " << levenshtein_distance(p4, received4) << std::endl;
+  std::cout << " DIFF: " << levenshtein_distance(p4, received4) << std::endl;
   // assert(levenshtein_distance(p4, received4) < 100);
   // std::cout << " PASS" << std::endl;
-  //
-  // std::cout << "\t21) Test 2 random2 cracker should find plaintext of a large key -";
-  // std::vector<int> k5 = { 24, 12, 3, 24, 5, 24, 7, 8, 9, 10, 1, 3, 13, 15, 15, 16, 17, 18, 23, 20, 21, 22, 19, 4 };
-  // std::string p5 = get_dict_2_string();
-  // std::string c5 = random2_ciph(p5, k5);
-  // std::string received5 = basic_crack(c5);
+
+  std::cout << "\t21) Test 2 random2 cracker should find plaintext of a large key -";
+  std::vector<int> k5 = { 24, 12, 3, 24, 5, 24, 7, 8, 9, 10, 1, 3, 13, 15, 15, 16, 17, 18, 23, 20, 21, 22, 19, 4 };
+  std::string p5 = get_dict_2_string();
+  std::string c5 = random2_ciph(p5, k5);
+  std::string received5 = basic_crack(c5);
   // std::cout << " ORIGINAL: " << p5 << std::endl;
   // std::cout << " RECEIVED: " << received5 << std::endl;
-  // std::cout << " DIFF: " << levenshtein_distance(p5, received5) << std::endl;
+  std::cout << " DIFF: " << levenshtein_distance(p5, received5) << std::endl;
   // assert(levenshtein_distance(p5, received5) < 100);
   // std::cout << " PASS" << std::endl;
 }

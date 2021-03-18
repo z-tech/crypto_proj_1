@@ -3,6 +3,6 @@
 
 #include <string>
 
-std::vector<std::pair<int, float>> basic_analysis(std::string c, int start, int period);
+std::vector<std::pair<int, float>> basic_analysis(std::string c, int start, int period, std::vector<std::string> dict);
 
 #endif
