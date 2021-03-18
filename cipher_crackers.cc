@@ -73,7 +73,7 @@ std::vector<int> key_of_len_l_guess(std::string c, std::vector<std::pair<int, fl
     for (int j = 0; j < keyLen; j++) {
       int minIndex = 0;
       int minDist = INT_MAX;
-      for (int k = 0; k < 10; k++) {
+      for (int k = 0; k < 20; k++) {
         keyGuess[j] = probableShifts[j][k];
         std::pair<int, int> tmp = get_fitness(basic_deciph(c, keyGuess), dict);
         if (tmp.first == 0 && dict.size() == 5) {
